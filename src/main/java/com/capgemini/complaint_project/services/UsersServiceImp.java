@@ -1,6 +1,14 @@
 package com.capgemini.complaint_project.services;
 
+
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -13,10 +21,12 @@ import com.capgemini.complaint_project.entities.User;
 import com.capgemini.complaint_project.exception.UserNotFoundException;
 import com.capgemini.complaint_project.repositories.UsersRepo;
 
+
 @Service
 public class UsersServiceImp implements UsersService {
 
 	private UsersRepo usersRepo;
+	private final String UPLOAD_DIR = "uploads/";
 	
 	public UsersServiceImp(UsersRepo usersRepo) {
 		this.usersRepo = usersRepo;
@@ -95,5 +105,8 @@ public class UsersServiceImp implements UsersService {
 	public User findByEmail(String email) {
 		return usersRepo.findByEmail(email);
 	}
-
+	@Override
+	public int getTotalUser() {
+		return usersRepo.findAll().size();
+	}
 }

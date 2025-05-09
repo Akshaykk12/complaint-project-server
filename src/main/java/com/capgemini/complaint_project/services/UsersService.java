@@ -1,5 +1,6 @@
 package com.capgemini.complaint_project.services;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.capgemini.complaint_project.dto.ComplaintData;
@@ -27,4 +28,6 @@ public interface UsersService {
 	List<UserDTO> getAllUserDTO();
 	
 	User findByEmail(String email);
+	
+	int getTotalUser();
 }
