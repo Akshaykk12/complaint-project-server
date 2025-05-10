@@ -84,8 +84,4 @@ public class UsersController {
 		List<UserDTO> users = usersService.getAllUserDTO();
 		return ResponseEntity.status(HttpStatus.OK).body(new ComplaintData(departments, compType, users));
 	}
-	@GetMapping("/getTotalUsers")
-	public ResponseEntity<Integer> getTotalUsers() {
-		return ResponseEntity.status(HttpStatus.OK).body(usersService.getTotalUser());
-	}
 }
