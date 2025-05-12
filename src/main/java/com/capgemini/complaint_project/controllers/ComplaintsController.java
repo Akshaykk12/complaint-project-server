@@ -120,4 +120,5 @@ public class ComplaintsController {
 	public ResponseEntity<List<Complaint>> getComplaintByUserId(@PathVariable Long userId){
 		return ResponseEntity.status(HttpStatus.OK).body(complaintService.findComplaintByUserId(userId));
 	}
+	
 }
