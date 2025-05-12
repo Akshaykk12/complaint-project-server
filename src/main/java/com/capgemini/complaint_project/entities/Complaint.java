@@ -44,7 +44,10 @@ public class Complaint {
 	
 	@NotBlank(message = "Status is required")
 	private String status;
-
+	
+	private LocalDate updateDate;
+	
+	private String proofImage;
 	
 
 }

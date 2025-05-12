@@ -1,6 +1,7 @@
 package com.capgemini.complaint_project.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -93,7 +94,25 @@ public class UsersServiceImp implements UsersService {
 
 	@Override
 	public User findByEmail(String email) {
-		return usersRepo.findByEmail(email);
+		return usersRepo.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found with given eamil: "+email));
+	}
+	
+	
+
+	@Override
+	public User findByNameOrEmail(String name, String email) {
+		// TODO Auto-generated method stub
+		return usersRepo.findByNameOrEmail(name, email).orElseThrow(() -> new UserNotFoundException("User not found with given eamil: "+email));
+	}
+
+	@Override
+	public boolean existsByEmail(String email) {
+		// TODO Auto-generated method stub
+		return usersRepo.existsByEmail(email);
+	}
+	@Override
+	public int getTotalUser() {
+		return usersRepo.findAll().size();
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +22,9 @@ import com.capgemini.complaint_project.dto.DepartmentsDTO;
 import com.capgemini.complaint_project.entities.Department;
 import com.capgemini.complaint_project.services.DepartmentsService;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/departments")
+@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 public class DepartmentsController {
 	
 	private final DepartmentsService departmentsService;

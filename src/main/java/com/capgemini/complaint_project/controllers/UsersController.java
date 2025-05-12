@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +27,10 @@ import com.capgemini.complaint_project.services.DepartmentsService;
 import com.capgemini.complaint_project.services.UsersService;
 
 //@CrossOrigin(origins = "http://127.0.0.1:5501")
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/users")
+@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 public class UsersController {
 	
 	private final UsersService usersService;
@@ -83,5 +85,9 @@ public class UsersController {
 		List<ComplaintTypeDTO> compType = complaintTypesService.getAllComplaintTypeDTO();
 		List<UserDTO> users = usersService.getAllUserDTO();
 		return ResponseEntity.status(HttpStatus.OK).body(new ComplaintData(departments, compType, users));
+	}
+	@GetMapping("/getTotalUsers")
+	public ResponseEntity<Integer> getTotalUsers() {
+		return ResponseEntity.status(HttpStatus.OK).body(usersService.getTotalUser());
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +21,9 @@ import com.capgemini.complaint_project.entities.ComplaintType;
 import com.capgemini.complaint_project.services.ComplaintTypesService;
 
 
-@CrossOrigin( origins = "*")
 @RestController
 @RequestMapping("/api/complaint-types")
+@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 public class ComplaintTypesController {
 	
 	private final ComplaintTypesService complaintTypesService;

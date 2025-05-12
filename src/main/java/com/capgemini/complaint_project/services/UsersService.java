@@ -1,6 +1,7 @@
 package com.capgemini.complaint_project.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.capgemini.complaint_project.dto.ComplaintData;
 import com.capgemini.complaint_project.dto.ComplaintTypeDTO;
@@ -27,4 +28,10 @@ public interface UsersService {
 	List<UserDTO> getAllUserDTO();
 	
 	User findByEmail(String email);
+	
+    User findByNameOrEmail(String name, String email);
+    
+    boolean existsByEmail(String email);
+    
+    int getTotalUser();
 }
